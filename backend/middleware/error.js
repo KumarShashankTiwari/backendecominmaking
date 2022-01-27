@@ -1,4 +1,4 @@
-const ErrorHander = require("../utils/errorHander");
+const ErrorHanler = require("../utils/errorHander");
 
 module.exports = (err,req,res,next) => {
   err.statusCode = err.statusCode || 500;
@@ -9,8 +9,17 @@ module.exports = (err,req,res,next) => {
   const message = `Resource not found. Invalid: ${err.path}`;
   err = new ErrorHandler(message, 400);
 }
+// if (err.name === "TypeError") {
+//   const message = `Error . Invalid: ${err.path}`;
+//   err = new ErrorHandler(message, 400);
+// }
+// if (err.name === "ReferenceError") {
+//   const message = `ReferenceError . Invalid: ${err.path}`;
+//   err = new ErrorHandler(message, 400);
+// }
   res.status(err.statusCode).json({
     success: false,
-    error: err.message
-  });
+     error: err.message
+      //  error: err.stack
+  })
 };
