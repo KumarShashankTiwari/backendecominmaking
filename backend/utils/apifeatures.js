@@ -13,7 +13,6 @@ class ApiFeatures {
           },
         }
       : {};
-
     this.query = this.query.find({ ...keyword });
     return this;
   }
@@ -41,7 +40,7 @@ class ApiFeatures {
 
     const skip = resultPerPage * (currentPage - 1);
 
-    console.log("this.query",this.query);
+
     this.query = this.query.limit(resultPerPage).skip(skip);
 
     return this;
