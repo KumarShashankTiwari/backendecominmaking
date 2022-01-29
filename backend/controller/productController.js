@@ -17,8 +17,11 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 //   res.status(200).json({ message: "Route is working fine" });
 // };
 exports.getAllProducts = catchAsyncError(async (req, res) => {
-
-  const apiFeatures = new ApiFeatures(Product.find(),req.query).search();
+  const resultPerPage = 5;
+  const apiFeatures = new ApiFeatures(Product.find(), req.query)
+  .search()
+  .filter()
+  .pagination(resultPerPage);
   // const products = await Product.find();
   const products = await apiFeatures.query;
   res.status(200).json({
